@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="col-md-12">
 		<div class="page-header">
-			<h2>Admin Area</h2>
+			<h2>Admin Area (Test)</h2>
 		</div>
 	</div>
 </div>
