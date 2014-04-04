@@ -90,11 +90,14 @@ class SearcherController extends \BaseController {
 	        }
 
 			$searcher->save();
-
+      
+      Cookie::queue('lookingforteam', $searcher->id, 86400);
+      
 			// redirect
 			return Redirect::to($name.'#looking')
 				->with('message-looking', 'Listing submitted successfully!')
-				->with('status', 'success');	
+				->with('status', 'success')
+        ->with('searcher_id', $searcher->id);	
 		}else{
 			return Redirect::to($name.'#looking')
 				->withErrors($validator)
@@ -145,7 +148,7 @@ class SearcherController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		
 	}
 
 }

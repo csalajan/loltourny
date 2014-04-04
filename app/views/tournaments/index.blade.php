@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="col-md-12">
 		<div class="page-header">
-			<h2>{{ $tournament->name }}</h2>
+      <h2>{{ $tournament->name }}</h2>
 		</div>
 	</div>
 </div>
@@ -49,6 +49,7 @@
 								<li>All players will receive a <strong>free</strong> <a href="http://beta.cursevoice.com">Curse Voice</a> beta key, we encourage use of it throughout the tournament as it's a very useful tool!</li>
 								<li>Format is double elimination. Best of one game. You will get two chances at reaching the final.</li>
 								<li>Your team will not be approved until entry fees have been paid.</li>
+                <li><a href="https://www.facebook.com/events/1454116508152472">Facebook Event</a></li>
 							</ul>
 						</li>
 						<li class="list-group-item">
@@ -62,6 +63,12 @@
 						<li class="list-group-item">
 							<h4 class="list-group-item-heading">Entry</h4>
 							<a href="#entry" data-toggle="tab" class="btn btn-success">Sign Up</a>
+						</li>
+            <li class="list-group-item">
+							<h4 class="list-group-item-heading">Admins</h4>
+							<ul>
+                <li>Jonathan Lambert - <a href="mailto:jonathan4.lambert@live.uwe.ac.uk"></a></li>
+							</ul>
 						</li>
 					</ul>
 				</div>
@@ -254,6 +261,7 @@
 						<li class="list-group-item">
 							<p>If you are looking for a team, post your name, summoner name and position below.</p>
 							<p>To contact other players, look them up on the UWE Gaming Society Facebook page or add them in-game.</p>
+              <p>If the "Remove Myself" button does not appear and you wish to be removed, please contact an admin.</p>
 						</li>
 						<li class="list-group-item">
 						{{ Form::open(array('url' => Request::url().'/searching/store', 'action' => 'post', 'class' => 'form-horizontal')) }}						
@@ -311,6 +319,11 @@
 						      </tbody>
 						    </table>
 						</li>
+            @if(Cookie::get('lookingforteam') !== null)
+            <li class="list-group-item">         
+              {{ HTML::link(Request::url().'/searching/'.Cookie::get('lookingforteam').'/destroy', 'Remove Myself', array('class' => 'btn btn-danger')) }}
+            </li>
+            @endif
 					</ul>
 				</div>
 			</div>
