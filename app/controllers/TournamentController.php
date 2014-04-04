@@ -23,7 +23,7 @@ class TournamentController extends \BaseController {
 
 			$date = DateTime::createFromFormat('Y-m-d', $tournament->date)->format('jS F Y');
 			$time = DateTime::createFromFormat('H:i:s', $tournament->time)->format('H:i');
-      $signup_close = DateTime::createFromFormat('Y-m-d H:i:s', $tournament->signup_close)->format('jS F Y H:i');
+      $signup_close = DateTime::createFromFormat('Y-m-d H:i:s', $tournament->signup_close)->format('H:i - jS F Y');
       
 
 			$teams_count = Team::where('tournament_id', '=', $tournament->id)->where('approved', '=', 1)->count();
