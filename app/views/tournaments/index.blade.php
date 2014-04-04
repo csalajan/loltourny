@@ -94,7 +94,7 @@
 							<p>£2 for UWE Video Gaming Society members.</p>
 							<p>£3 for non-members</p>
 							<p>Once your team has been approved, we will let you know how much your teams entry fee will cost.</p>
-							<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NTRZT7APVYY6N" class="btn btn-warning">Make Payment</a>
+							<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KGSRSL3FLNAQY" class="btn btn-warning">Make Payment</a>
 						</li>
 					</ul>
 				</div>

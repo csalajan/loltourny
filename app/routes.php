@@ -42,10 +42,10 @@ Route::group(['after' => 'auth'], function()
 
 	Route::get('payment/cancel', function()
 	{
-	    return 'Payment not taken as you cancelled the checkout process.';
+	    return 'A payment has not been taken as you cancelled the checkout process.';
 	});
 
 	Route::get('payment/success', function()
 	{
-	    return 'Payment accepted! If you didn\'t state your email or name within the email please contact jonathan@swiftping.co.uk.';
+	    return 'Payment accepted! Please send an email to jonathan4.lambert@live.uwe.ac.uk to confirm your entry.';
 	});
