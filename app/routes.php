@@ -32,6 +32,7 @@ Route::group(['after' => 'auth'], function()
 	Route::get('{name}/teams/{id}/edit/', 'TeamController@edit')->where('name', '[\w]+');
 	Route::post('{name}/teams/{id}/update', 'TeamController@update')->where('name', '[\w]+');
 	Route::post('{name}/searching/store', 'SearcherController@store')->where('name', '[\w]+');
+  Route::get('{name}/searching/{id}/destroy/{cookie}', 'SearcherController@destroy')->where('name', '[\w]+');
 
 	Route::post('{name}/teams/store', 'TeamController@store')->where('name', '[\w]+');
 

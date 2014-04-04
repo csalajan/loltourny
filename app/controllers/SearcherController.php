@@ -146,9 +146,16 @@ class SearcherController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy($name, $id, $hash)
 	{
-		
+    if($hash/371192 == $id)
+    {
+      Searcher::destroy($id);
+      return Redirect::to($name.'#looking');
+    }else{
+      return Redirect::to($name.'#looking');
+    }
+    
 	}
 
 }

@@ -321,7 +321,7 @@
 						</li>
             @if(Cookie::get('lookingforteam') !== null)
             <li class="list-group-item">         
-              {{ HTML::link(Request::url().'/searching/'.Cookie::get('lookingforteam').'/destroy', 'Remove Myself', array('class' => 'btn btn-danger')) }}
+              {{ HTML::link(Request::url().'/searching/'.Cookie::get('lookingforteam').'/destroy/'.(Cookie::get('lookingforteam')*371192), 'Remove Myself', array('class' => 'btn btn-danger')) }}
             </li>
             @endif
 					</ul>
