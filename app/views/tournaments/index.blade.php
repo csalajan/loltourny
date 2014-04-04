@@ -41,7 +41,13 @@
 						<li class="list-group-item"><h4 class="list-group-item-heading">Format:</h4> {{ $tournament->format }}</li>
 						<li class="list-group-item"><h4 class="list-group-item-heading">Team Limit:</h4> {{ $tournament->size }}</li>
 						<li class="list-group-item"><h4 class="list-group-item-heading">Location:</h4> {{ $tournament->location }}</li>
-						<li class="list-group-item">
+            <li class="list-group-item">
+							<h4 class="list-group-item-heading">Admins</h4>
+							<ul>
+                <li>Jonathan Lambert - <a href="mailto:jonathan4.lambert@live.uwe.ac.uk">Email</a></li>
+							</ul>
+						</li>
+            <li class="list-group-item">
 							<h4 class="list-group-item-heading">Rules &amp; Info</h4>
 							<ul>
 								<li>Teams must include at least <strong>one</strong> verified player from UWE.</li>
@@ -63,12 +69,6 @@
 						<li class="list-group-item">
 							<h4 class="list-group-item-heading">Entry</h4>
 							<a href="#entry" data-toggle="tab" class="btn btn-success">Sign Up</a>
-						</li>
-            <li class="list-group-item">
-							<h4 class="list-group-item-heading">Admins</h4>
-							<ul>
-                <li>Jonathan Lambert - <a href="mailto:jonathan4.lambert@live.uwe.ac.uk"></a></li>
-							</ul>
 						</li>
 					</ul>
 				</div>
@@ -319,7 +319,7 @@
 						      </tbody>
 						    </table>
 						</li>
-            @if(Cookie::get('lookingforteam') !== null)
+            @if(Cookie::get('lookingforteam') !== null && Searcher::where('id', '=', Cookie::get('lookingforteam'))->count() > 0)
             <li class="list-group-item">         
               {{ HTML::link(Request::url().'/searching/'.Cookie::get('lookingforteam').'/destroy/'.(Cookie::get('lookingforteam')*371192), 'Remove Myself', array('class' => 'btn btn-danger')) }}
             </li>
