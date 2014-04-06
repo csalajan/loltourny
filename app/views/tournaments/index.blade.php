@@ -36,7 +36,7 @@
 					<ul class="list-group">
 						<li class="list-group-item"><h4 class="list-group-item-heading">Name:</h4> {{ $tournament->name }}</li>
 						<li class="list-group-item"><h4 class="list-group-item-heading">Date:</h4> {{ $date }}</li>
-						<li class="list-group-item"><h4 class="list-group-item-heading">Start Time:</h4> {{ $time }} (Not Confirmed!)</li>
+						<li class="list-group-item"><h4 class="list-group-item-heading">Start Time:</h4> {{ $time }}</li>
 						<li class="list-group-item"><h4 class="list-group-item-heading">Signup Closes:</h4> {{ $signup_close }}</li>
 						<li class="list-group-item"><h4 class="list-group-item-heading">Format:</h4> {{ $tournament->format }}</li>
 						<li class="list-group-item"><h4 class="list-group-item-heading">Team Limit:</h4> {{ $tournament->size }}</li>
