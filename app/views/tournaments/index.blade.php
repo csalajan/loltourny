@@ -55,6 +55,7 @@
 								<li>All players will receive a <strong>free</strong> <a href="http://beta.cursevoice.com">Curse Voice</a> beta key, we encourage use of it throughout the tournament as it's a very useful tool!</li>
 								<li>Format is double elimination. Best of one game. You will get two chances at reaching the final.</li>
 								<li>Your team will not be approved until entry fees have been paid.</li>
+                <li>If your team does not show up, or you can't find any subs to replace missing members, your entry fee won't be refunded. You can make member changes up until the signup deadline however.</li>
                 <li><a href="https://www.facebook.com/events/1454116508152472">Facebook Event</a></li>
 							</ul>
 						</li>
