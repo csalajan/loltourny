@@ -45,17 +45,7 @@ class TournamentController extends \BaseController {
             $teams[$team->id]['p'.$i.'_name'] = $player->name;
             $teams[$team->id]['p'.$i.'_summoner'] = $player->summoner;
             $teams[$team->id]['p'.$i.'_pos'] = $player->position;
-            
-            $result = $this->fetch_json('http://prod.api.pvp.net/api/lol/euw/v1.3/summoner/by-name/'.$player->summoner.'?api_key=60ab8879-822e-47bd-ba1a-2c5bd830ae3e');
-            
-            if(isset($result))
-            {
-              $id = reset($result)->id;
-            }else{
-              $id = '';
-            }
-            
-            $teams[$team->id]['p'.$i.'_summoner_id'] = $id;
+            $teams[$team->id]['p'.$i.'_summoner_id'] = 0;
             
           }
           
