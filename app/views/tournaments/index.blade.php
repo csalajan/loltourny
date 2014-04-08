@@ -5,7 +5,11 @@
 		</div>
 	</div>
 </div>
-
+<div class="row clearfix">
+			<div class="col-md-12">
+			    <div class="alert alert-warning">If you were previously getting errors when submitting a team, please try again as we have now fixed that problem. CLOSING TIME IS MIDNIGHT ON THURSDAY!</div>
+			</div>
+		</div>
 <!-- Nav tabs -->
 <ul class="nav nav-tabs"  id="tounament-tabs">
   <li class="active"><a href="#home" data-toggle="tab">Home</a></li>
