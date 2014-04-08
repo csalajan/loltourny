@@ -31,28 +31,31 @@ class BaseController extends Controller {
 		return $times;
 	}
 
-	public function fetch_json($url) {
-		$ch = curl_init();
-		$timeout = 5;
-		curl_setopt($ch, CURLOPT_URL, $url);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
-		$data = curl_exec($ch);
-		curl_close($ch);
-		$data = json_decode($data);
-		return $data;
-	}
+  public function fetch_json($url) {  
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    $result = curl_exec($ch);
+    $statuscode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+    if($statuscode!=200){
+      return "false";
+    }
+    $data = json_decode($result);
+    curl_close($ch);
+    return $data;
+  }
 
-	public function fetch_json_array($url) {
-		$ch = curl_init();
-		$timeout = 5;
-		curl_setopt($ch, CURLOPT_URL, $url);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
-		$data = curl_exec($ch);
-		curl_close($ch);
-		$data = json_decode($data, false);
-		return $data;
-	}
+  public function fetch_json_array($url) {  
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    $result = curl_exec($ch);
+    $statuscode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    if($statuscode!=200){
+      return "false";
+    }
+    $data = json_decode($result, false);
+    curl_close($ch);
+    return $data;
+  }
 
 }
