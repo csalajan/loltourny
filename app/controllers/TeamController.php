@@ -143,7 +143,7 @@ class TeamController extends \BaseController {
 			{
 				Log::info('Loop # '.$i);
 
-				$result = $this->fetch_json('http://prod.api.pvp.net/api/lol/euw/v1.3/summoner/by-name/'.Input::get('player'.$i.'_summoner').'?api_key=60ab8879-822e-47bd-ba1a-2c5bd830ae3e');
+				$result = $this->fetch_json('http://prod.api.pvp.net/api/lol/euw/v1.3/summoner/by-name/'.Input::get('player'.$i.'_summoner').'?api_key=e0edf82d-c495-4075-80a1-0f274a9bfd29');
 
 				Log::info('Fetched Summoner ID from Summoner Name. Player '.$i);
 
@@ -158,7 +158,7 @@ class TeamController extends \BaseController {
 		        		->with('status', 'danger');
 		        }
 
-		        $url = 'http://prod.api.pvp.net/api/lol/euw/v2.3/league/by-summoner/'.$summoner_id.'?api_key=60ab8879-822e-47bd-ba1a-2c5bd830ae3e';
+		        $url = 'http://prod.api.pvp.net/api/lol/euw/v2.3/league/by-summoner/'.$summoner_id.'?api_key=e0edf82d-c495-4075-80a1-0f274a9bfd29';
 	        	$result = $this->fetch_json($url);
 
 	        	Log::info('Fetched Summoner League from Summoner ID. Player '.$i);

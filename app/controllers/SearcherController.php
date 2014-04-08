@@ -50,7 +50,7 @@ class SearcherController extends \BaseController {
 			$searcher->summoner      = Input::get('searcher_summoner');
 			$searcher->position      = Input::get('searcher_position');
 
-			$url = 'http://prod.api.pvp.net/api/lol/euw/v1.3/summoner/by-name/'.Input::get('searcher_summoner').'?api_key=60ab8879-822e-47bd-ba1a-2c5bd830ae3e';
+			$url = 'http://prod.api.pvp.net/api/lol/euw/v1.3/summoner/by-name/'.Input::get('searcher_summoner').'?api_key=e0edf82d-c495-4075-80a1-0f274a9bfd29';
 			
 			$result = $this->fetch_json($url);
 
@@ -58,7 +58,7 @@ class SearcherController extends \BaseController {
 	        {
 	        	$searcher->summoner_id = reset($result)->id;
 
-	        	$url = 'http://prod.api.pvp.net/api/lol/euw/v2.3/league/by-summoner/'.$searcher->summoner_id.'?api_key=60ab8879-822e-47bd-ba1a-2c5bd830ae3e';
+	        	$url = 'http://prod.api.pvp.net/api/lol/euw/v2.3/league/by-summoner/'.$searcher->summoner_id.'?api_key=e0edf82d-c495-4075-80a1-0f274a9bfd29';
 	        	$result = $this->fetch_json($url);
 
 	        	if(empty($result))
