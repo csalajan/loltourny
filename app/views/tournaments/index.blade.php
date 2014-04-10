@@ -219,7 +219,7 @@
                     @for($i=1; $i <= $team['total_players']; $i++)
                     <tr>
                       <td>{{ $team['p'.$i.'_name'] }}</td>
-                      <td><a href="http://www.lolking.net/summoner/euw/{{ $team['p'.$i.'_summoner_id'] }}" target="_blank">{{ $team['p'.$i.'_summoner'] }}</a></td>
+                      <td><a href="euw.op.gg/summoner/userName={{ $team['p'.$i.'_summoner'] }}" target="_blank">{{ $team['p'.$i.'_summoner'] }}</a></td>
                       <td>{{ ucfirst($team['p'.$i.'_pos']) }}</td>
                     </tr>
                     @endfor
