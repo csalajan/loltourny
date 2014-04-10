@@ -121,8 +121,13 @@ class TeamController extends \BaseController {
       array()
     );
     
+    Log::info('Team player validation check complete.');
+    
     if ($validator->passes()) 
     {
+      Log::info('Team player validation passed.');
+      
+      Log::info('Adding team to database...');
       
       $team 				 = new Team;
       $team->tournament_id = Tournament::getIDFromUrl($name);
@@ -130,15 +135,23 @@ class TeamController extends \BaseController {
       $team->approved 	 = false;
       $team->save();
       
+      Log::info('Team '.$team->name.' added successfully');
+      
+      Log::info('Check for subs...');
+      
       if(Input::has('player6_name') && !Input::has('player7_name'))
       {
         $total_players = 6;
+        Log::info('Team has 1 sub.');
       }elseif(Input::has('player7_name')){
         $total_players = 7;
+        Log::info('Team has 2 subs.');
       }else{
         $total_players = 5;
+        Log::info('Team no subs.');
       }
       
+      Log::info('Adding players to database...');
       for($i = 1; $i <= $total_players; $i++)
       {
         $summoner_rank = 'N/A';
@@ -153,18 +166,22 @@ class TeamController extends \BaseController {
       $player->email = Input::get('player'.$i.'_email');
       $player->student = Input::get('player'.$i.'_student', false);
       $player->society = Input::get('player'.$i.'_society', false);
-      $player->save();           
+      $player->save();  
+        Log::info('Player '.Input::get('player'.$i.'_name').' saved!');
       }
       
-
-      
-      Log::info('Player '.Input::get('player'.$i.'_name').' saved!');
+      Log::info('All players saved.');
+      return Redirect::to($name)
+        ->with('message-index', 'Team submitted successfully!')
+        ->with('status', 'success');	
+    }else{
+      return Redirect::to($name.'#entry')
+        ->withErrors($validator)
+				->withInput()
+        ->with('message-entry', 'Team not submitted, there was an error. Please check the form below.')
+        ->with('error', 'danger');
     }
-    
-    // redirect
-    return Redirect::to($name)
-      ->with('message-index', 'Team submitted successfully!')
-      ->with('status', 'success');		
+      
 }
 
 	/**

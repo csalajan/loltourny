@@ -27,6 +27,7 @@ class TournamentController extends \BaseController {
       
       
       $teams_count = Team::where('tournament_id', '=', $tournament->id)->where('approved', '=', 1)->count();
+      $applied_count = Team::where('tournament_id', '=', $tournament->id)->where('approved', '=', 0)->count();
       
       if($teams_count > 0)
       {
@@ -56,6 +57,34 @@ class TournamentController extends \BaseController {
         $teams = false;
       }
       
+      if($applied_count > 0)
+      {
+        $teams_query = Team::where('tournament_id', '=', $tournament->id)->where('approved', '=', 0)->get();
+        
+        foreach($teams_query as $team)
+        {
+          $applied[$team->id]['name'] = $team->name;
+          
+          $players = Player::where('team_id', '=', $team->id)->get();
+          
+          $i = 0;
+          foreach($players as $player)
+          {
+            $i++;
+            $applied[$team->id]['p'.$i.'_name'] = $player->name;
+            $applied[$team->id]['p'.$i.'_summoner'] = $player->summoner;
+            $applied[$team->id]['p'.$i.'_pos'] = $player->position;
+            $applied[$team->id]['p'.$i.'_summoner_id'] = 0;
+            
+          }
+          
+          $applied[$team->id]['total_players'] = $i;
+        }
+        
+      }else{
+        $applied = false;
+      }
+      
       $searchers = Searcher::all();
       
       $this->layout->content = View::make('tournaments.index')
@@ -64,7 +93,8 @@ class TournamentController extends \BaseController {
         ->with('time', $time)
         ->with('teams', $teams)
         ->with('searchers', $searchers)
-        ->with('signup_close', $signup_close);
+        ->with('signup_close', $signup_close)
+        ->with('applied', $applied);
             
     }else{
       App::abort(404, 'Tournament with url "'.$name.'" is causing an unknown error.');
