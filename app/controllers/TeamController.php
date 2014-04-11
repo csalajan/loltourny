@@ -291,6 +291,9 @@ class TeamController extends \BaseController {
       unset($result);
       unset($summoner_id);
       unset($summoner_rank);
+      return Redirect::to('admin')
+          ->with('message', 'Ranks updated for team: '.$id)
+          ->with('status', 'success');
     }
   }
   
