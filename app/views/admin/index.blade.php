@@ -44,7 +44,7 @@
 				    <div class="panel-heading">
 				      <h4 class="panel-title">
 				        <a data-toggle="collapse" data-parent="#accordion" href="#team<?php echo $t; ?>">
-				          {{ $team['name'].' - '.$team['approved'] }}
+                  {{ $team['name'].' - '.$team['approved'].' - ' }}<a href="http://loltourny.net/admin/teams/update_ranks/{{ $id }}">Update</a>
 				        </a>
 				      </h4>
 				    </div>
