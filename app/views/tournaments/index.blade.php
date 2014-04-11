@@ -278,16 +278,19 @@
     </div>
   </div>
   
-  <div class="tab-pane" id="edit">
-    
+  <div class="tab-pane" id="fixtures">
+    <p>Due to time constraints I wasn't able to code in a fixtures/standings/results area just yet. The link below will take you to Challonge where you can view everything:</p>
+    <h2><a href="http://challonge.com/uwetournament">Click Here</a> for fixtures, results and standings</h2>
   </div>
   
-  <div class="tab-pane" id="fixtures">
-    
+  <div class="tab-pane" id="results">
+    <p>Due to time constraints I wasn't able to code in a fixtures/standings/results area just yet. The link below will take you to Challonge where you can view everything:</p>
+    <h2><a href="http://challonge.com/uwetournament">Click Here</a> for fixtures, results and standings</h2>
   </div>
   
   <div class="tab-pane" id="standings">
-    
+    <p>Due to time constraints I wasn't able to code in a fixtures/standings/results area just yet. The link below will take you to Challonge where you can view everything:</p>
+    <h2><a href="http://challonge.com/uwetournament">Click Here</a> for fixtures, results and standings</h2>
   </div>
   
   <div class="tab-pane" id="looking">
