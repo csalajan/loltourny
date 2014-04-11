@@ -260,14 +260,8 @@ class TeamController extends \BaseController {
       $j = 0;
       while($j == 0)
       {
-        Log::info('Loop #'.$j);
-        if(is_string($result))
-        {
-          Log::info('No rank found.');
-          $rank = 'Unranked';
-          $j++;
-        }
-        if(isset(current($result)->queue))
+        Log::info('New Loop');
+        if(!is_string($result) && isset(current($result)->queue))
         {
           if(current($result)->queue == 'RANKED_SOLO_5x5')
           {
