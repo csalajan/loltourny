@@ -235,8 +235,8 @@ class TeamController extends \BaseController {
     foreach($players as $player)
     {
       Log::info('Fetching Summoner ID from Riot Games API...');
-      Log::info('Fetch URL: '.'http://prod.api.pvp.net/api/lol/euw/v1.4/summoner/by-name/'.$player->summoner.'?api_key=e0edf82d-c495-4075-80a1-0f274a9bfd29');
-      $result = $this->fetch_json('http://prod.api.pvp.net/api/lol/euw/v1.4/summoner/by-name/'.$player->summoner.'?api_key=e0edf82d-c495-4075-80a1-0f274a9bfd29');
+      Log::info('Fetch URL: '.'http://prod.api.pvp.net/api/lol/euw/v1.4/summoner/by-name/'.str_replace(' ', '%20', $player->summoner).'?api_key=e0edf82d-c495-4075-80a1-0f274a9bfd29');
+      $result = $this->fetch_json('http://prod.api.pvp.net/api/lol/euw/v1.4/summoner/by-name/'.str_replace(' ', '%20', $player->summoner).'?api_key=e0edf82d-c495-4075-80a1-0f274a9bfd29');
       
       if(isset($result))
       {
