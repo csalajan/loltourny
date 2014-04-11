@@ -17,6 +17,7 @@ Route::group(['after' => 'auth'], function()
 {
 	Route::get('admin', 'AdminController@index');
   Route::get('admin/teams/update_ranks/{id}', 'TeamController@update_ranks');
+  Route::get('admin/teams/update_ranks/all', 'TeamController@update_all_ranks');
 });
 
 	Route::get('create', 'TournamentController@create');
