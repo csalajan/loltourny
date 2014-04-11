@@ -61,6 +61,7 @@
                 <li>Your team will not be approved until entry fees have been paid.</li>
                 <li>If your team does not show up, or you can't find any subs to replace missing members, your entry fee won't be refunded. You can make member changes up until the signup deadline however.</li>
                 <li><a href="https://www.facebook.com/events/1454116508152472">Facebook Event</a></li>
+                <li>LoL Chatroom: UWE 5v5 Tournament</li>
               </ul>
             </li>
             <li class="list-group-item">
