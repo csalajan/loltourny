@@ -1,28 +1,28 @@
 <?php
 
 class TeamController extends \BaseController {
-
-	/**
+  
+  /**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
-	public function index()
-	{
-	
-	}
-
-	/**
+  public function index()
+  {
+    
+  }
+  
+  /**
 	 * Show the form for creating a new resource.
 	 *
 	 * @return Response
 	 */
-	public function create()
-	{
-		//
-	}
-
-	/**
+  public function create()
+  {
+    //
+  }
+  
+  /**
 	 * Store a newly created resource in storage.
 	 *
 	 * @return Response
@@ -155,18 +155,18 @@ class TeamController extends \BaseController {
       for($i = 1; $i <= $total_players; $i++)
       {
         $summoner_rank = 'N/A';
-    
-      $player = new Player;
-      $player->team_id = $team->id;
-      $player->name = Input::get('player'.$i.'_name');
-      $player->summoner = Input::get('player'.$i.'_summoner');
-      $player->summoner_id = '0';
-      $player->rank = $summoner_rank;
-      $player->position = Input::get('player'.$i.'_position');
-      $player->email = Input::get('player'.$i.'_email');
-      $player->student = Input::get('player'.$i.'_student', false);
-      $player->society = Input::get('player'.$i.'_society', false);
-      $player->save();  
+        
+        $player = new Player;
+        $player->team_id = $team->id;
+        $player->name = Input::get('player'.$i.'_name');
+        $player->summoner = Input::get('player'.$i.'_summoner');
+        $player->summoner_id = '0';
+        $player->rank = $summoner_rank;
+        $player->position = Input::get('player'.$i.'_position');
+        $player->email = Input::get('player'.$i.'_email');
+        $player->student = Input::get('player'.$i.'_student', false);
+        $player->society = Input::get('player'.$i.'_society', false);
+        $player->save();  
         Log::info('Player '.Input::get('player'.$i.'_name').' saved!');
       }
       
@@ -177,55 +177,121 @@ class TeamController extends \BaseController {
     }else{
       return Redirect::to($name.'#entry')
         ->withErrors($validator)
-				->withInput()
+        ->withInput()
         ->with('message-entry', 'Team not submitted, there was an error. Please check the form below.')
         ->with('error', 'danger');
     }
-      
-}
-
-	/**
+    
+  }
+  
+  /**
 	 * Display the specified resource.
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
-	{
-		//
-	}
-
-	/**
+  public function show($id)
+  {
+    //
+  }
+  
+  /**
 	 * Show the form for editing the specified resource.
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
-	{
-		//
-	}
-
-	/**
+  public function edit($id)
+  {
+    //
+  }
+  
+  /**
 	 * Update the specified resource in storage.
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
-	{
-		//
-	}
-
-	/**
+  public function update($id)
+  {
+    
+  }
+  
+  /**
 	 * Remove the specified resource from storage.
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
-	{
-		//
-	}
-
+  public function destroy($id)
+  {
+    //
+  }
+  
+  public function update_ranks($id)
+  {
+    $players = Player::where('team_id', '=', $id)->get(); 
+    
+    foreach($players as $player)
+    {
+      Log::info('Fetching Summoner ID from Riot Games API...');
+      Log::info('Fetch URL: '.'http://prod.api.pvp.net/api/lol/euw/v1.4/summoner/by-name/'.$player->summoner.'?api_key=e0edf82d-c495-4075-80a1-0f274a9bfd29');
+      $result = $this->fetch_json('http://prod.api.pvp.net/api/lol/euw/v1.4/summoner/by-name/'.$player->summoner.'?api_key=e0edf82d-c495-4075-80a1-0f274a9bfd29');
+      
+      if(isset($result))
+      {
+        Log::info('Result fetched.');
+        $summoner_id = reset($result)->id;
+        Log::info($player->summoner.' id is: '.reset($result)->id);
+        $player->summoner_id = $summoner_id;
+      }else{
+        return Redirect::to('admin')
+          ->with('message', 'Invalid League of Legends Username:'.$player->summoner)
+          ->with('status', 'danger');
+      }
+      
+      unset($result);
+      Log::info('Fetching Summoner ('.$summoner_id.') Rank from Riot Games API...');
+      Log::info('Fetch URL: '.'http://prod.api.pvp.net/api/lol/euw/v2.3/league/by-summoner/'.$summoner_id.'?api_key=e0edf82d-c495-4075-80a1-0f274a9bfd29');
+      $result = $this->fetch_json('http://prod.api.pvp.net/api/lol/euw/v2.3/league/by-summoner/'.$summoner_id.'?api_key=e0edf82d-c495-4075-80a1-0f274a9bfd29');
+      
+      
+      Log::info('Searching through results for Solo Rank');
+      $j = 0;
+      while($j == 0)
+      {
+        Log::info('Loop #'.$j);
+        if(isset(current($result)->queue))
+        {
+          if(current($result)->queue == 'RANKED_SOLO_5x5')
+          {
+            Log::info('Solo Queue found, grabbing tier.');
+            $rank = current($result)->tier;
+            $j++;
+          }else{
+            Log::info('=======================================');
+            Log::info('Next Result');
+            Log::info('=======================================');
+            Log::info($result);
+            Log::info('=======================================');
+            next($result);
+          }
+        }else{         
+          Log::info('No rank found.');
+          $rank = 'Unranked';
+          $j++;
+        }
+      }
+      
+      Log::info('Rank found.');
+      
+      $player->rank = ucfirst(strtolower($rank));        
+      $player->save();
+      Log::info('ID and Rank saved.');
+      unset($result);
+      unset($summoner_id);
+      unset($summoner_rank);
+    }
+  }
+  
 }
